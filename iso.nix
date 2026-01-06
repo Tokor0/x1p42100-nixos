@@ -15,4 +15,8 @@
   hardware.enableAllHardware = lib.mkForce false;
 
   isoImage.forceTextMode = true;
+  environment.systemPackages = with pkgs; [
+    neovim
+    git
+  ];
 }
