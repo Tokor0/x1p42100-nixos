@@ -2,7 +2,10 @@
 
 NixOS for the Qualcomm Snapdragon X Plus (x1p42100) based *Lenovo Ideapad Slim 5x*.
 
-*Currently, the ISO boots with a blank screen. But at least it boots!*
+## TODO
+
+- Get the ISO to boot __DONE__
+- Add a system configuration output to the flake __IN PROGRESS__
 
 ## Related repos
 
