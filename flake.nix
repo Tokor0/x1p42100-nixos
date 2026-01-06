@@ -47,12 +47,16 @@
             (
               { pkgs, lib, ... }:
               {
+                boot.loader.efi = {
+                  canTouchEfiVariables = true;
+                };
                 boot.loader.systemd-boot = {
                   enable = true;
                   configurationLimit = 2;
                 };
-                boot.initrd.systemd = {
+                boot.initrd = {
                   enable = true;
+                  systemd.enable = true;
                 };
                 hardware.enableRedistributableFirmware = true;
                 fileSystems = {
