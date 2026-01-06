@@ -47,25 +47,31 @@
             (
               { pkgs, lib, ... }:
               {
-                boot.loader.efi = {
-                  canTouchEfiVariables = true;
-                };
-                boot.loader.systemd-boot = {
-                  enable = true;
-                  configurationLimit = 2;
-                };
-                boot.initrd = {
-                  enable = true;
-                  systemd.enable = true;
+                boot = {
+                  loader = {
+                    efi.canTouchEfiVariables = true;
+                    systemd-boot = {
+                      enable = true;
+                      configurationLimit = 2;
+                    };
+                  };
+                  initrd = {
+                    enable = true;
+                    systemd.enable = true;
+                  };
                 };
 
-                users.users.user = {
-                  isNormalUser = true;
-                  password = "arm";
-                  extraGroups = [
-                    "wheel"
-                    "networkmanager"
-                  ];
+                users.users = {
+                  root.initialPassword = "root";
+
+                  user = {
+                    isNormalUser = true;
+                    initialPassword = "arm";
+                    extraGroups = [
+                      "wheel"
+                      "networkmanager"
+                    ];
+                  };
                 };
 
                 hardware.enableRedistributableFirmware = true;
