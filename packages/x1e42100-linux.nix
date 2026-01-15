@@ -20,5 +20,5 @@ linuxPackagesFor (buildLinux {
     rev = "jg/ubuntu-qcom-x1e-6.18.y";
     hash = "sha256-qapDpQZxoJzDEVbv4YvW8HyzqxdX71sdybH6U6FqI9w=";
   };
-  version = "6.18.2";
+  version = "6.18.3-jg-0";
 })
