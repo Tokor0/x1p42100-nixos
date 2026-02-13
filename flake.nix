@@ -5,7 +5,7 @@
     hyprland.url = "github:hyprwm/Hyprland";
   };
   outputs =
-    { self, nixpkgs, ... } @ inputs:
+    { self, nixpkgs, ... }@inputs:
     let
       pkgs-unpatched = nixpkgs.legacyPackages.aarch64-linux;
       nixpkgs-patched =
@@ -25,7 +25,7 @@
     {
       nixosModules = {
         qcom-fw = ./modules/firmware.nix;
-	x1p = ./modules/x1p42100.nix;
+        x1p = ./modules/x1p42100.nix;
       };
       nixosConfigurations = {
         slim5xISO = nixpkgs.lib.nixosSystem {
@@ -46,11 +46,11 @@
           ];
         };
         slim5xSystem = nixpkgs.lib.nixosSystem {
-	  specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs; };
           system = "aarch64-linux";
           modules = [
             ./modules/x1p42100.nix
-	    ./configuration.nix
+            ./configuration.nix
           ];
 
         };
