@@ -2,7 +2,6 @@
   description = "Minimal NixOS installation media";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # hyprland.url = "github:hyprwm/Hyprland";
     systemd-boot-installer = {
       url = "github:Tokor0/nixos-systemd-boot-installer";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,10 +25,6 @@
           name = "nixpkgs-patched";
           src = nixpkgs;
           patches = [
-            #(pkgs-unpatched.fetchpatch {
-            #  url = "https://github.com/NixOS/nixpkgs/commit/de1fdb6310af8f70c98746ba4550dc2799a03621.patch";
-            #  hash = "sha256-brqJxblmqWFAk8JgxmxXeHoiaWiQtsCsOzht/WlH5eE=";
-            #})
             ./nixpkgs-devicetree.patch
             ./nixpkgs-efi-shell.patch
           ];
@@ -46,7 +41,6 @@
           specialArgs = { inherit inputs linux-src; };
           system = "aarch64-linux";
           modules = [
-            #"${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
             inputs.systemd-boot-installer.modules.nixos.live
             ./iso.nix
             ./modules/x1p42100.nix
@@ -57,7 +51,6 @@
                   "flakes"
                 ];
               };
-              #networking.networkmanager.enable = true;
             }
           ];
         };

@@ -9,26 +9,6 @@
   hardware.deviceTree = {
     enable = true;
     name = "qcom/x1p42100-lenovo-ideapad-slim5x-oled.dtb";
-    #overlays = [
-    #  {
-    #    # The DTB uses "edp-panel" (generic) but Samsung OLED panels need the
-    #    # dedicated atna40ct01 driver which handles DP AUX backlight correctly.
-    #    # Without this, brightness is detected as 0 and the backlight is never enabled.
-    #    name = "panel-samsung-atna40ct01";
-    #    dtsText = ''
-    #      /dts-v1/;
-    #      /plugin/;
-
-    #      / {
-    #          compatible = "lenovo,ideapad-slim5x-oled";
-    #      };
-
-    #      &{/soc@0/display-subsystem@ae00000/displayport-controller@aea0000/aux-bus/panel} {
-    #          compatible = "samsung,atna40ct01";
-    #      };
-    #    '';
-    #  }
-    #];
   };
 
   systemd.tpm2.enable = false;
@@ -107,26 +87,6 @@
       "console=tty0"
       "cma=128MB"
     ];
-
-    #kernelPatches = [
-    #  {
-    #    extraConfig = ''
-    #      CLK_X1E80100_CAMCC y
-    #      CLK_X1P42100_GPUCC y
-    #      HZ_1000 y
-    #      MFD_QCOM_RPM y
-    #      PCIE_QCOM y
-    #      PHY_QCOM_QMP y
-    #      PHY_QCOM_QMP_PCIE y
-    #      QCOM_CLK_RPM y
-    #      REGULATOR_QCOM_RPM y
-    #      SCHED_CLUSTER y
-    #      TYPEC y
-    #    '';
-    #    name = "snapdragon-config";
-    #    patch = null;
-    #  }
-    #];
 
     kernelPackages = pkgs.callPackage ../packages/x1p42100-linux.nix { inherit linux-src; };
   };

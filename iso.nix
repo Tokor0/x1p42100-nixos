@@ -26,23 +26,8 @@
       zfs = lib.mkForce false;
       cifs = lib.mkForce false;
     };
-    # Force-load USB ethernet modules so they're available immediately
-    #initrd.kernelModules = [
-    #  "r8152" # Realtek RTL8152/8153/7153 (most common USB-C adapters)
-    #  "usbnet" # USB networking framework
-    #];
-    ## Additional USB ethernet drivers available on demand
-    #initrd.availableKernelModules = [
-    #  "cdc_ether" # CDC Ethernet (generic USB ethernet)
-    #  "cdc_ncm" # CDC NCM (newer USB ethernet)
-    #  "ax88179_178a" # ASIX (common in docks/adapters)
-    #  "cdc_mbim" # Mobile broadband
-    #  "dwc3" # USB3 DWC3 controller (if not built-in)
-    #  "dwc3-qcom" # Qualcomm DWC3 platform driver
-    #];
   };
 
-  #hardware.enableAllHardware = lib.mkForce false;
   hardware.firmware = [
     pkgs.linux-firmware
     (pkgs.callPackage ./modules/firmware.nix { })
