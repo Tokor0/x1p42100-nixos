@@ -1,7 +1,12 @@
 {
-  description = "Minimal NixOS installation media";
+  description = "NixOS for the Qualcomm X1P (x1p42100) Lenovo IdeaPad Slim 5x";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+    import-tree.url = "github:vic/import-tree";
     systemd-boot-installer = {
       url = "github:Tokor0/nixos-systemd-boot-installer";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -11,58 +16,11 @@
       flake = false;
     };
   };
-  outputs =
-    {
-      self,
-      nixpkgs,
-      linux-src,
-      ...
-    }@inputs:
-    let
-      pkgs-unpatched = nixpkgs.legacyPackages.aarch64-linux;
-      nixpkgs-patched =
-        (pkgs-unpatched.applyPatches {
-          name = "nixpkgs-patched";
-          src = nixpkgs;
-          patches = [
-            ./nixpkgs-devicetree.patch
-            ./nixpkgs-efi-shell.patch
-          ];
-        }).overrideAttrs
-          { allowSubstitutes = true; };
-    in
-    {
-      nixosModules = {
-        qcom-fw = ./modules/firmware.nix;
-        x1p = ./modules/x1p42100.nix;
-      };
-      nixosConfigurations = {
-        slim5xISO = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs linux-src; };
-          system = "aarch64-linux";
-          modules = [
-            inputs.systemd-boot-installer.modules.nixos.live
-            ./iso.nix
-            ./modules/x1p42100.nix
-            {
-              nix = {
-                settings.experimental-features = [
-                  "nix-command"
-                  "flakes"
-                ];
-              };
-            }
-          ];
-        };
-        slim5xSystem = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs linux-src; };
-          system = "aarch64-linux";
-          modules = [
-            ./modules/x1p42100.nix
-            ./configuration.nix
-          ];
-
-        };
-      };
+  outputs = inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        inputs.flake-parts.flakeModules.modules
+        (inputs.import-tree ./modules)
+      ];
     };
 }
