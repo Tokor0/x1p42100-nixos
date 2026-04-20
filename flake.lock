@@ -122,7 +122,25 @@
         "import-tree": "import-tree",
         "linux-src": "linux-src",
         "nixpkgs": "nixpkgs",
+        "slim5x-firmware": "slim5x-firmware",
         "systemd-boot-installer": "systemd-boot-installer"
+      }
+    },
+    "slim5x-firmware": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767796667,
+        "narHash": "sha256-x5Y75WCzl3JfdrL4pPw1xgzY/z/qK+DFfrMo1bh8Eh4=",
+        "owner": "Tokor0",
+        "repo": "linux-firmware-x1p42100-lenovo-ideapad-slim5x",
+        "rev": "bccb601c19bb2e4e3320a9666114c039836c4b9c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Tokor0",
+        "repo": "linux-firmware-x1p42100-lenovo-ideapad-slim5x",
+        "rev": "bccb601c19bb2e4e3320a9666114c039836c4b9c",
+        "type": "github"
       }
     },
     "systemd-boot-installer": {
@@ -134,11 +152,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1776607766,
-        "narHash": "sha256-MxCnOHKOY6mr2eWBBdtPOBwProzq+Zp4yfzya7S4wVw=",
+        "lastModified": 1776631016,
+        "narHash": "sha256-wKOLUFhOvuNfG/FHi5oFqAXHwto7z2zXslPajAX9aAA=",
         "owner": "Tokor0",
         "repo": "nixos-systemd-boot-installer",
-        "rev": "64c640f30c5cde08c8bef5e4419f8fe524f2b6a7",
+        "rev": "60919c54a74b8094341ecb0179a17cb08204ccd9",
         "type": "github"
       },
       "original": {

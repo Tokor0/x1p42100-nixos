@@ -1,12 +1,12 @@
 { inputs, ... }:
 {
   flake.nixosConfigurations.slim5xISO = inputs.nixpkgs.lib.nixosSystem {
-    specialArgs = { inherit (inputs) linux-src; };
     system = "aarch64-linux";
     modules = [
       inputs.systemd-boot-installer.modules.nixos.live
       inputs.self.modules.nixos.x1p
       inputs.self.modules.nixos.qcom-fw
+      inputs.self.modules.nixos.base
       (
         { pkgs, lib, ... }:
         {
@@ -24,29 +24,28 @@
             ];
             consoleLogLevel = 7;
             kernelParams = [
-              "fbcon=nodefer"
               "boot.shell_on_fail"
+              "drm.debug=0x1e"
             ];
             supportedFilesystems = {
               zfs = lib.mkForce false;
               cifs = lib.mkForce false;
             };
           };
-          services.openssh.enable = true;
-          networking = {
-            wireless.iwd.enable = true;
-            hostName = "nixos";
-            networkmanager.wifi.backend = "iwd";
+          hardware.enableAllHardware = lib.mkForce false;
+          isoImage.forceTextMode = true;
+          boot.initrd.network.enable = true;
+          services.openssh = {
+            enable = true;
+            settings.PermitRootLogin = "yes";
           };
-          environment.systemPackages = with pkgs; [
-            neovim
-            git
-            impala
-          ];
-          nix.settings.experimental-features = [
-            "nix-command"
-            "flakes"
-          ];
+          networking = {
+            hostName = "nixos";
+            firewall.enable = false;
+            networkmanager.enable = true;
+            useDHCP = lib.mkForce true;
+          };
+          users.users.root.initialPassword = "nixos";
         }
       )
     ];
