@@ -3,7 +3,7 @@
 NixOS for the Qualcomm Snapdragon X Plus (x1p42100) based _Lenovo Ideapad Slim
 5x_.
 
-# Installation
+## Installation
 
 _Note: This exact installation process has yet to be tested._
 
@@ -86,7 +86,7 @@ By default, some programs are installed. You can start Hyprland using
 `start-hyprland`. In Hyprland, press Super-Q to open a terminal emulator, or
 Super-Space to open a program launcher. Here, Super refers to the Windows key.
 
-# Flake structure
+## Flake structure
 
 The flake is organized as a set of [dendritic](https://github.com/mightyiam/dendritic)
 [flake-parts](https://flake.parts) modules. Every file under `modules/` is
@@ -113,7 +113,7 @@ These are composed into two `nixosConfigurations`:
 - `slim5x-iso` — the live installer ISO (`slim5x` + `iso` + `base`).
 - `slim5x-system` — the installed system (`slim5x` + `hardware` + `gui`).
 
-# Using in your own NixOS configuration
+## Using in your own NixOS configuration
 
 Add this flake as an input and import one of the exposed modules. For most
 purposes you want `slim5x`, which pulls in the kernel, initrd modules, device
