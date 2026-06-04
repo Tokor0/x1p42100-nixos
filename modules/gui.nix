@@ -5,7 +5,6 @@
     {
       imports = [ inputs.self.modules.nixos.base ];
       users.users = {
-        root.initialPassword = "root";
         user = {
           isNormalUser = true;
           initialPassword = "arm";
@@ -25,6 +24,5 @@
         firefox.enable = true;
         hyprland.enable = true;
       };
-      services.openssh.enable = true;
     };
 }
