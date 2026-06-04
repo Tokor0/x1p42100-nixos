@@ -12,7 +12,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     linux-src = {
-      url = "github:jglathe/linux_ms_dev_kit/jg/ubuntu-qcom-x1e-6.19.12-jg-1";
+      url = "github:jglathe/linux_ms_dev_kit/jg/ubuntu-qcom-x1e-6.19.14-jg-3";
       flake = false;
     };
     slim5x-firmware = {
@@ -20,7 +20,8 @@
       flake = false;
     };
   };
-  outputs = inputs:
+  outputs =
+    inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "aarch64-linux" ];
       imports = [

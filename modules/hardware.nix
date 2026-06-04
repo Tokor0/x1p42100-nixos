@@ -1,6 +1,5 @@
-{ ... }:
 {
-  flake.modules.nixos.hardware = { pkgs, ... }: {
+  flake.modules.nixos.hardware = {
     boot = {
       loader = {
         efi.canTouchEfiVariables = true;
@@ -14,7 +13,6 @@
         systemd.enable = true;
       };
     };
-    hardware.firmware = with pkgs; [ wireless-regdb ];
     fileSystems = {
       "/" = {
         device = "/dev/disk/by-label/root";
