@@ -22,7 +22,7 @@ commands to build the ISO:
 ```
 git clone git@github.com:Tokor0/x1p42100-nixos
 cd x1p42100-nixos
-nix build --extra-experimental-features 'nix-command flakes' .#nixosConfigurations.slim5xISO.config.system.build.isoImage
+nix build --extra-experimental-features 'nix-command flakes' .#nixosConfigurations.slim5x-iso.config.system.build.isoImage
 ```
 
 Then, flash the ISO onto a USB-**A** device. Note that USB-C will not work.
@@ -72,7 +72,7 @@ mount /dev/disk/by-label/SYSTEM_DRV /mnt/boot
 Finally, run `nixos-install`:
 
 ```
-nixos-install --root /mnt --no-channel-copy --no-root-passoword --flake git@github.com:Tokor0/x1p42100-nixos#slim5xSystem
+nixos-install --root /mnt --no-channel-copy --no-root-password --flake git@github.com:Tokor0/x1p42100-nixos#slim5x-system
 ```
 
 Now, NixOS is installed, and you should be able to boot into it by rebooting and
@@ -86,17 +86,61 @@ By default, some programs are installed. You can start Hyprland using
 `start-hyprland`. In Hyprland, press Super-Q to open a terminal emulator, or
 Super-Space to open a program launcher. Here, Super refers to the Windows key.
 
+# Flake structure
+
+The flake is organized as a set of [dendritic](https://github.com/mightyiam/dendritic)
+[flake-parts](https://flake.parts) modules. Every file under `modules/` is
+imported automatically via [`import-tree`](https://github.com/vic/import-tree),
+and each one contributes to `flake.modules.nixos.*`, a collection of reusable
+NixOS modules:
+
+- `x1p` — core hardware support shared by every X1P-42-100 device: the custom
+  [jglathe](https://github.com/jglathe/linux_ms_dev_kit) kernel, initrd modules
+  and GPU firmware. (`modules/x1p42100.nix`)
+- `slim5x` — `x1p` plus the Slim 5x device tree and Lenovo firmware.
+  (`modules/slim5x.nix`, `modules/firmware.nix`)
+- `base` — minimal common configuration (networking, Nix settings, base
+  packages). (`modules/base.nix`)
+- `gui` — a `base` desktop with a `user` account, Hyprland and Firefox.
+  (`modules/gui.nix`)
+- `hardware` — bootloader and filesystem layout for the installed system.
+  (`modules/hardware.nix`)
+- `iso` — installer-specific overrides (systemd-boot, autologin, USB initrd
+  modules). (`modules/iso.nix`)
+
+These are composed into two `nixosConfigurations`:
+
+- `slim5x-iso` — the live installer ISO (`slim5x` + `iso` + `base`).
+- `slim5x-system` — the installed system (`slim5x` + `hardware` + `gui`).
+
 # Using in your own NixOS configuration
 
-**TODO**
+Add this flake as an input and import one of the exposed modules. For most
+purposes you want `slim5x`, which pulls in the kernel, initrd modules, device
+tree and firmware needed to run the Slim 5x:
 
-## TODO
+```nix
+{
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    x1p42100-nixos.url = "github:Tokor0/x1p42100-nixos";
+  };
 
-- Get the ISO to boot **DONE**
-- Add a system configuration output to the flake **DONE**
-- Get firmware -> graphics **DONE**
-- Make it convenient to use in other configs **DONE**
-- Finish the guide **IN PROGRESS**
+  outputs = { nixpkgs, x1p42100-nixos, ... }: {
+    nixosConfigurations.my-slim5x = nixpkgs.lib.nixosSystem {
+      system = "aarch64-linux";
+      modules = [
+        x1p42100-nixos.modules.nixos.slim5x
+        # ... your own configuration.nix, hardware bits, etc.
+      ];
+    };
+  };
+}
+```
+
+If your device is a different X1P-42-100 machine (not the Slim 5x), import the
+lower-level `x1p` module instead and supply your own `hardware.deviceTree`
+ (See [jglathe's repo](https://github.com/jglathe/linux_ms_dev_kit/tree/jg/ubuntu-qcom-x1e-6.19.14-jg-3/arch/arm64/boot/dts/qcom) for other readily available DTs) settings and firmware.
 
 ## Related repos
 
