@@ -52,7 +52,7 @@ boot menu by pressing F12 at boot and select the drive.
 
 ### Step 4: Installation
 
-First, connect to Wi-Fi using `nmtui`.
+First, connect to Wi-Fi using `impala`.
 
 Enter a root shell and format the previously created partition:
 
@@ -80,7 +80,7 @@ selecting the appropriate boot option.
 
 After booting, you can login with the username `user` and password `arm`. You
 probably want to change the password using `passwd`. You can connect to Wi-Fi
-using `nmtui`.
+using `impala`.
 
 By default, some programs are installed. You can start Hyprland using
 `start-hyprland`. In Hyprland, press Super-Q to open a terminal emulator, or
@@ -137,6 +137,8 @@ tree and firmware needed to run the Slim 5x:
   };
 }
 ```
+
+Bootloader and filesystem layout configuration is also required. See [`modules/hardware.nix`](https://github.com/Tokor0/x1p42100-nixos/blob/main/modules/hardware.nix) for an example corresponding to the installation instructions above.
 
 If your device is a different X1P-42-100 machine (not the Slim 5x), import the
 lower-level `x1p` module instead and supply your own `hardware.deviceTree`
