@@ -71,16 +71,16 @@
     "linux-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1778218421,
-        "narHash": "sha256-+geHPb+Y2RxH4Yt/OyBgsQg0iG7RFoXEYcK0C29k4GI=",
+        "lastModified": 1779290539,
+        "narHash": "sha256-tttTEDmPLkoGgyn7XNd4OF8roffiddgvPnL+oMd/x1o=",
         "owner": "jglathe",
         "repo": "linux_ms_dev_kit",
-        "rev": "7e3f3c0f555ea0736a268c07469d7d8ba9666d07",
+        "rev": "e2c46c019aa08315511eda4b7dc82d60af64eaab",
         "type": "github"
       },
       "original": {
         "owner": "jglathe",
-        "ref": "jg/ubuntu-qcom-x1e-6.19.14-jg-3",
+        "ref": "jg/ubuntu-qcom-x1e-6.19.14-jg-4",
         "repo": "linux_ms_dev_kit",
         "type": "github"
       }

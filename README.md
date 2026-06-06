@@ -140,7 +140,7 @@ tree and firmware needed to run the Slim 5x:
 
 If your device is a different X1P-42-100 machine (not the Slim 5x), import the
 lower-level `x1p` module instead and supply your own `hardware.deviceTree`
- (See [jglathe's repo](https://github.com/jglathe/linux_ms_dev_kit/tree/jg/ubuntu-qcom-x1e-6.19.14-jg-3/arch/arm64/boot/dts/qcom) for other readily available DTs) settings and firmware.
+ (See [jglathe's repo](https://github.com/jglathe/linux_ms_dev_kit/tree/jg/ubuntu-qcom-x1e-6.19.14-jg-4/arch/arm64/boot/dts/qcom) for other readily available DTs) settings and firmware.
 
 ## Related repos
 
