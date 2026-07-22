@@ -4,7 +4,7 @@
     { pkgs, lib, ... }:
     {
       packages.x1p-linux = pkgs.buildLinux {
-        version = "6.19.14";
+        version = "7.1.3";
         src = inputs.linux-src;
 
         structuredExtraConfig = with lib.kernel; {

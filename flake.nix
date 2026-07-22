@@ -12,7 +12,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     linux-src = {
-      url = "github:jglathe/linux_ms_dev_kit/jg/ubuntu-qcom-x1e-6.19.14-jg-4";
+      url = "github:jglathe/linux_ms_dev_kit/jg/ubuntu-qcom-x1e-7.1.3-jg-2";
       flake = false;
     };
     slim5x-firmware = {

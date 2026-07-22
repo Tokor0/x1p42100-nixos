@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778716662,
-        "narHash": "sha256-m1Yf0wZ8j1OHjTc2UwHwyQRSnNeSgLJOd7q5Y45hzi4=",
+        "lastModified": 1782949081,
+        "narHash": "sha256-vp6Y/Grm98ESt6ceOkWiHWyZRDV3J1RID4w+6NWK9yA=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "f7c1a2d347e4c52d5fb8d10cb4d94b5884e546fb",
+        "rev": "17c9d6cdfc60c64f4ee8d306f9bc0b4ccb51481e",
         "type": "github"
       },
       "original": {
@@ -40,15 +40,15 @@
     },
     "import-tree": {
       "locked": {
-        "lastModified": 1778781969,
-        "narHash": "sha256-Jjuz5CmSkur8KvLDoGa+vylEp+RkQtv4mt/qcMznpH0=",
-        "owner": "vic",
+        "lastModified": 1784254960,
+        "narHash": "sha256-iI88R3wHz8wTKQb5orvpc51L/Xr64AJyxid/0MKa/b8=",
+        "owner": "denful",
         "repo": "import-tree",
-        "rev": "d321337efd0f23a9eb14a42adb7b2c29313ab274",
+        "rev": "4ebb10ae17d5f1ad366e7aef5b92cb8eecf24f69",
         "type": "github"
       },
       "original": {
-        "owner": "vic",
+        "owner": "denful",
         "repo": "import-tree",
         "type": "github"
       }
@@ -71,27 +71,27 @@
     "linux-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1779290539,
-        "narHash": "sha256-tttTEDmPLkoGgyn7XNd4OF8roffiddgvPnL+oMd/x1o=",
+        "lastModified": 1784462715,
+        "narHash": "sha256-GcL05B8nMn3tkuG2dcPxvqwW2Q5B1eMGFzFUOI1QrgY=",
         "owner": "jglathe",
         "repo": "linux_ms_dev_kit",
-        "rev": "e2c46c019aa08315511eda4b7dc82d60af64eaab",
+        "rev": "bd336e2e0937cb5b2dd258e784b3b6267c653167",
         "type": "github"
       },
       "original": {
         "owner": "jglathe",
-        "ref": "jg/ubuntu-qcom-x1e-6.19.14-jg-4",
+        "ref": "jg/ubuntu-qcom-x1e-7.1.3-jg-2",
         "repo": "linux_ms_dev_kit",
         "type": "github"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1779560665,
-        "narHash": "sha256-tpyBcxPpcQb8ukyNF7DoCwfSY3VPsxHoYwj00Cayv5o=",
+        "lastModified": 1784497964,
+        "narHash": "sha256-vlHUuqAcbcH2RKmHbPiuQzbv1pnzzavXnI62RD0bqCU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "64c08a7ca051951c8eae34e3e3cb1e202fe36786",
+        "rev": "241313f4e8e508cb9b13278c2b0fa25b9ca27163",
         "type": "github"
       },
       "original": {
