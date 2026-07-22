@@ -6,7 +6,7 @@
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
-    import-tree.url = "github:vic/import-tree";
+    import-tree.url = "github:denful/import-tree";
     systemd-boot-installer = {
       url = "github:Tokor0/nixos-systemd-boot-installer";
       inputs.nixpkgs.follows = "nixpkgs";
