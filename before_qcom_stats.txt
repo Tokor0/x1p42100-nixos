@@ -1,0 +1,42 @@
+/sys/kernel/debug/qcom_stats/ddr_stats:DDR LPM Stat Name:0xd4	count:0	Duration (ticks):0
+/sys/kernel/debug/qcom_stats/ddr_stats:DDR LPM Stat Name:0xd3	count:0	Duration (ticks):0
+/sys/kernel/debug/qcom_stats/ddr_stats:DDR LPM Stat Name:0x11	count:0	Duration (ticks):0
+/sys/kernel/debug/qcom_stats/ddr_stats:DDR LPM Stat Name:0xd0	count:0	Duration (ticks):0
+/sys/kernel/debug/qcom_stats/ddr_stats:DDR Freq 200Mhz:	CP IDX:1	count:1	Duration (ticks):0
+/sys/kernel/debug/qcom_stats/ddr_stats:DDR Freq 547Mhz:	CP IDX:2	count:1	Duration (ticks):0
+/sys/kernel/debug/qcom_stats/ddr_stats:DDR Freq 768Mhz:	CP IDX:3	count:1	Duration (ticks):0
+/sys/kernel/debug/qcom_stats/ddr_stats:DDR Freq 1555Mhz:	CP IDX:4	count:1	Duration (ticks):0
+/sys/kernel/debug/qcom_stats/ddr_stats:DDR Freq 1708Mhz:	CP IDX:5	count:1	Duration (ticks):0
+/sys/kernel/debug/qcom_stats/ddr_stats:DDR Freq 2092Mhz:	CP IDX:6	count:1	Duration (ticks):0
+/sys/kernel/debug/qcom_stats/ddr_stats:DDR Freq 2736Mhz:	CP IDX:7	count:1	Duration (ticks):0
+/sys/kernel/debug/qcom_stats/ddr_stats:DDR Freq 3187Mhz:	CP IDX:8	count:1	Duration (ticks):0
+/sys/kernel/debug/qcom_stats/ddr_stats:DDR Freq 3686Mhz:	CP IDX:9	count:1	Duration (ticks):0
+/sys/kernel/debug/qcom_stats/ddr_stats:DDR Freq 4224Mhz:	CP IDX:10	count:1	Duration (ticks):0
+/sys/kernel/debug/qcom_stats/ddr:Count: 0
+/sys/kernel/debug/qcom_stats/ddr:Last Entered At: 0
+/sys/kernel/debug/qcom_stats/ddr:Last Exited At: 0
+/sys/kernel/debug/qcom_stats/ddr:Accumulated Duration: 0
+/sys/kernel/debug/qcom_stats/cxsd:Count: 0
+/sys/kernel/debug/qcom_stats/cxsd:Last Entered At: 0
+/sys/kernel/debug/qcom_stats/cxsd:Last Exited At: 0
+/sys/kernel/debug/qcom_stats/cxsd:Accumulated Duration: 0
+/sys/kernel/debug/qcom_stats/aosd:Count: 0
+/sys/kernel/debug/qcom_stats/aosd:Last Entered At: 0
+/sys/kernel/debug/qcom_stats/aosd:Last Exited At: 0
+/sys/kernel/debug/qcom_stats/aosd:Accumulated Duration: 0
+/sys/kernel/debug/qcom_stats/apss:Count: 1
+/sys/kernel/debug/qcom_stats/apss:Last Entered At: 35395143549
+/sys/kernel/debug/qcom_stats/apss:Last Exited At: 38669383423
+/sys/kernel/debug/qcom_stats/apss:Accumulated Duration: 3274239874
+/sys/kernel/debug/qcom_stats/adsp_island:Count: 0
+/sys/kernel/debug/qcom_stats/adsp_island:Last Entered At: 0
+/sys/kernel/debug/qcom_stats/adsp_island:Last Exited At: 0
+/sys/kernel/debug/qcom_stats/adsp_island:Accumulated Duration: 0
+/sys/kernel/debug/qcom_stats/cdsp:Count: 6
+/sys/kernel/debug/qcom_stats/cdsp:Last Entered At: 920231585
+/sys/kernel/debug/qcom_stats/cdsp:Last Exited At: 919785313
+/sys/kernel/debug/qcom_stats/cdsp:Accumulated Duration: 100408699946
+/sys/kernel/debug/qcom_stats/adsp:Count: 531249
+/sys/kernel/debug/qcom_stats/adsp:Last Entered At: 100753424558
+/sys/kernel/debug/qcom_stats/adsp:Last Exited At: 100753405135
+/sys/kernel/debug/qcom_stats/adsp:Accumulated Duration: 82967043988

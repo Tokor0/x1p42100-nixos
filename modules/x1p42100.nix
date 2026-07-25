@@ -7,6 +7,16 @@
         version = "7.1.3";
         src = inputs.linux-src;
 
+        kernelPatches = [
+          {
+            # Under review upstream, not merged. Adds the system-level PSCI idle
+            # state; without it aosd/cxsd/ddr never leave 0 and suspend costs
+            # ~2.3 W. See the patch header for the open review points.
+            name = "hamoa-system-power-domain-ss3";
+            patch = ../patches/hamoa-system-power-domain-ss3.patch;
+          }
+        ];
+
         structuredExtraConfig = with lib.kernel; {
           CLK_X1E80100_CAMCC = yes;
           CLK_X1P42100_GPUCC = yes;
