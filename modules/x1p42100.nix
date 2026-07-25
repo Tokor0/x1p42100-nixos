@@ -81,8 +81,14 @@
         };
 
         kernelParams = [
-          "pd_ignore_unused"
-          "clk_ignore_unused"
+          # pd_ignore_unused and clk_ignore_unused were inherited from Ubuntu's
+          # bringup config and deliberately removed: they stop the kernel ever
+          # disabling unused power domains and clocks, which leaves 37 domains
+          # on (including two UFS GDSCs on a machine that boots from NVMe) and
+          # keeps cx/mx/mmcx voted up. With them set, `apss` slept 0.018% of a
+          # 1 h s2idle suspend despite 145 ms average gaps between interrupts,
+          # so the domains are being held up rather than woken.
+          # Re-add both if the machine hangs at boot or on resume.
           "cma=128MB"
         ];
 

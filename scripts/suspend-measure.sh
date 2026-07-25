@@ -42,6 +42,11 @@ snapshot() {
 	else
 		echo "syspd stock"
 	fi
+	# Record the power-relevant boot params, so a saved report is unambiguous
+	# about which configuration produced it.
+	echo "params $(tr ' ' '\n' < /proc/cmdline |
+		grep -E 'ignore_unused|mem_sleep_default' |
+		paste -sd, - | sed 's/^$/none/')"
 	[ -r "$BAT/energy_now" ] && echo "energy $(cat "$BAT/energy_now")"
 	[ -r "$BAT/status" ] && echo "status $(cat "$BAT/status")"
 	# Interrupt counts, summed across CPUs. Under s2idle the CPUs stay online
@@ -110,6 +115,7 @@ report() {
 			printf "kernel        : %s\n", a["kernel"]
 			printf "mem_sleep     : %s\n", a["memsleep"]
 			printf "system_pd DT  : %s\n", a["syspd"]
+			printf "boot params   : %s\n", a["params"]
 			susp = a["susptotal"] + 0
 			nsusp = a["suspcount"] + 0
 			base = (susp > 0) ? susp : dur
