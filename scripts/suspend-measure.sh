@@ -151,8 +151,13 @@ report() {
 			tot = 0
 			for (k in ai) { d = ai[k] - bi[k]; if (d > 0) tot += d }
 			if (tot > 0) {
-				printf "\ntop interrupt sources over the window (%d total, %.1f/s while suspended):\n", \
-					tot, tot/base
+				# The IRQ delta spans the whole begin->end window, so it must be
+				# rated against that, not against the suspended time alone.
+				printf "\ntop interrupt sources (%d total, %.1f/s over the %.0f s window):\n", \
+					tot, tot/dur, dur
+				if (susp > 0 && (dur - susp) > 0.1 * dur)
+					printf "  NOTE: %.0f s of the window (%.0f%%) was awake -- this is NOT the\n        suspended rate. Suspend sooner after 'begin' for a clean figure.\n", \
+						dur - susp, 100*(dur-susp)/dur
 				cmd = "sort -k2 -rn | head -12"
 				for (k in ai) {
 					d = ai[k] - bi[k]

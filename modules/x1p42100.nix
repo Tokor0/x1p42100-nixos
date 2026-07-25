@@ -89,6 +89,13 @@
           # 1 h s2idle suspend despite 145 ms average gaps between interrupts,
           # so the domains are being held up rather than woken.
           # Re-add both if the machine hangs at boot or on resume.
+
+          # /sys/power/mem_sleep resets to the firmware default (deep) on every
+          # boot, and the system_pd idle state is only ever issued from
+          # __psci_enter_domain_idle_state(), which deep never reaches -- deep
+          # calls PSCI SYSTEM_SUSPEND straight to firmware and skips genpd.
+          # Pin s2idle so the patch is actually exercised across reboots.
+          "mem_sleep_default=s2idle"
           "cma=128MB"
         ];
 
