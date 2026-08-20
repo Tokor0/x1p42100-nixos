@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782949081,
-        "narHash": "sha256-vp6Y/Grm98ESt6ceOkWiHWyZRDV3J1RID4w+6NWK9yA=",
+        "lastModified": 1785627969,
+        "narHash": "sha256-4dtXQk/NMePegK/nWp5NSeuZKLATItOq61lpEvmXqGw=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "17c9d6cdfc60c64f4ee8d306f9bc0b4ccb51481e",
+        "rev": "427bf4bd9435fdf21321c8cc628c24efc14c0f7a",
         "type": "github"
       },
       "original": {
@@ -71,27 +71,27 @@
     "linux-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1784462715,
-        "narHash": "sha256-GcL05B8nMn3tkuG2dcPxvqwW2Q5B1eMGFzFUOI1QrgY=",
+        "lastModified": 1786633899,
+        "narHash": "sha256-jKDbwhHD1h8UF2EZpXqgMnJ/o7CxBWe0WTjqpcqGkI8=",
         "owner": "jglathe",
         "repo": "linux_ms_dev_kit",
-        "rev": "bd336e2e0937cb5b2dd258e784b3b6267c653167",
+        "rev": "1bc2382102d246cb2eb76fdc33a65758126ceba1",
         "type": "github"
       },
       "original": {
         "owner": "jglathe",
-        "ref": "jg/ubuntu-qcom-x1e-7.1.3-jg-2",
+        "ref": "jg/ubuntu-qcom-x1e-7.1.7-jg-1",
         "repo": "linux_ms_dev_kit",
         "type": "github"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1784497964,
-        "narHash": "sha256-vlHUuqAcbcH2RKmHbPiuQzbv1pnzzavXnI62RD0bqCU=",
+        "lastModified": 1787135253,
+        "narHash": "sha256-RD2kNWCG+Bjo6h+JVjWVNntZs2GtRoeY2xHjts/FNkA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "241313f4e8e508cb9b13278c2b0fa25b9ca27163",
+        "rev": "ffb3c9b700e759be2ef13237c9d8f953b32a1e46",
         "type": "github"
       },
       "original": {
@@ -139,7 +139,6 @@
       "original": {
         "owner": "Tokor0",
         "repo": "linux-firmware-x1p42100-lenovo-ideapad-slim5x",
-        "rev": "bccb601c19bb2e4e3320a9666114c039836c4b9c",
         "type": "github"
       }
     },
