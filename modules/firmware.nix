@@ -21,7 +21,6 @@
 
       boot.initrd.extraFirmwarePaths = map (f: "qcom/x1p42100/LENOVO/83HL/${f}") [
         "adsp_dtbs.elf"
-        "adsp_dtbs.elf"
         "adspr.jsn"
         "adsps.jsn"
         "adspua.jsn"
