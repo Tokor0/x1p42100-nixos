@@ -10,6 +10,12 @@
         structuredExtraConfig = with lib.kernel; {
           CLK_X1E80100_CAMCC = yes;
           CLK_X1P42100_GPUCC = yes;
+
+          # Out-of-tree jglathe driver. No DTS references it (the Slim 5x panel
+          # uses "edp-panel"), it still calls the drm_panel_init() that 7.2 made
+          # static, and Ubuntu ships CONFIG_DRM_PANEL_SAMSUNG_ATNA40CT01=n.
+          # Disable it so nixpkgs' autoModules doesn't try to build it.
+          DRM_PANEL_SAMSUNG_ATNA40CT01 = no;
           HZ_1000 = yes;
           MFD_QCOM_RPM = yes;
           PCIE_QCOM = yes;
