@@ -8,10 +8,11 @@
           configurationLimit = 2;
         };
       };
-      initrd = {
-        enable = true;
-        systemd.enable = true;
-      };
+      # The option boot.initrd.systemd.enable has been removed.
+      # initrd = {
+      # enable = true;
+      # systemd.enable = true;
+      # };
     };
     fileSystems = {
       "/" = {
