@@ -16,6 +16,9 @@
           # static, and Ubuntu ships CONFIG_DRM_PANEL_SAMSUNG_ATNA40CT01=n.
           # Disable it so nixpkgs' autoModules doesn't try to build it.
           DRM_PANEL_SAMSUNG_ATNA40CT01 = no;
+          # Out-of-tree Dell XPS 9345 EC driver lacks MODULE_IMPORT_NS("IIO_CONSUMER");
+          # Ubuntu ships it disabled.
+          EC_DELL_XPS = no;
           HZ_1000 = yes;
           MFD_QCOM_RPM = yes;
           # Ubuntu's AppArmor SAUCE patches use skb->secmark without guarding
