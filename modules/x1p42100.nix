@@ -21,8 +21,8 @@
           EC_DELL_XPS = no;
           HZ_1000 = yes;
           # Ubuntu's IgH EtherCAT master uses x86-only cpu_khz; Ubuntu builds it
-          # on amd64 only.
-          IGH_ECAT = no;
+          # on amd64 only. Optional: unreachable while ETHERNET is off.
+          IGH_ECAT = option no;
           MFD_QCOM_RPM = yes;
           # Ubuntu's AppArmor SAUCE patches use skb->secmark without guarding
           # it on CONFIG_NETWORK_SECMARK, which Ubuntu always enables.
@@ -41,7 +41,112 @@
           VIRTUALIZATION = yes;
           KVM = yes;
           MAGIC_SYSRQ = yes;
-        };
+
+          # Build time: skip subsystems for hardware the Slim 5x can't have.
+          # USB-attachable classes (USB net/Wi-Fi/audio, UVC) are kept.
+          DRM_AMDGPU = no;
+          DRM_NOUVEAU = no;
+          DRM_RADEON = no;
+          DRM_XE = no;
+          ATA = no;
+          ETHERNET = no;
+          INFINIBAND = lib.mkForce no;
+          MEDIA_ANALOG_TV_SUPPORT = lib.mkForce no;
+          MEDIA_DIGITAL_TV_SUPPORT = lib.mkForce no;
+          MEDIA_PCI_SUPPORT = lib.mkForce no;
+          MEDIA_SDR_SUPPORT = no;
+          MTD = no;
+          RC_CORE = lib.mkForce no;
+          SCSI_LOWLEVEL = lib.mkForce no;
+          SND_PCI = no;
+          STAGING = lib.mkForce no;
+          WLAN_VENDOR_INTEL = no;
+        }
+        # Non-Qualcomm SoC families: their clk/pinctrl/phy drivers and DTBs.
+        // lib.genAttrs [
+          "ARCH_ACTIONS"
+          "ARCH_AIROHA"
+          "ARCH_ALPINE"
+          "ARCH_APPLE"
+          "ARCH_ASPEED"
+          "ARCH_AXIADO"
+          "ARCH_BCM"
+          "ARCH_BERLIN"
+          "ARCH_BLAIZE"
+          "ARCH_BST"
+          "ARCH_CIX"
+          "ARCH_EXYNOS"
+          "ARCH_HISI"
+          "ARCH_INTEL_SOCFPGA"
+          "ARCH_K3"
+          "ARCH_KEEMBAY"
+          "ARCH_LG1K"
+          "ARCH_MA35"
+          "ARCH_MEDIATEK"
+          "ARCH_MESON"
+          "ARCH_MICROCHIP"
+          "ARCH_MVEBU"
+          "ARCH_NPCM"
+          "ARCH_NXP"
+          "ARCH_REALTEK"
+          "ARCH_RENESAS"
+          "ARCH_ROCKCHIP"
+          "ARCH_SEATTLE"
+          "ARCH_SOPHGO"
+          "ARCH_SPRD"
+          "ARCH_STM32"
+          "ARCH_SUNXI"
+          "ARCH_SYNQUACER"
+          "ARCH_TEGRA"
+          "ARCH_THUNDER"
+          "ARCH_THUNDER2"
+          "ARCH_UNIPHIER"
+          "ARCH_VEXPRESS"
+          "ARCH_VISCONTI"
+          "ARCH_XGENE"
+          "ARCH_ZYNQMP"
+        ] (_: lib.kernel.no)
+        # Set by nixpkgs' common-config, but unreachable with the above disabled.
+        // lib.genAttrs [
+          "8139TOO_8129"
+          "8139TOO_PIO"
+          "AIC79XX_DEBUG_ENABLE"
+          "AIC7XXX_DEBUG_ENABLE"
+          "AIC94XX_DEBUG"
+          "ATA_BMDMA"
+          "ATA_SFF"
+          "DINGHAI"
+          "DRM_AMD_ACP"
+          "DRM_AMD_DC_FP"
+          "DRM_AMD_DC_SI"
+          "DRM_AMD_ISP"
+          "DRM_AMD_SECURE_DISPLAY"
+          "DRM_AMDGPU_CIK"
+          "DRM_AMDGPU_SI"
+          "DRM_AMDGPU_USERPTR"
+          "DRM_NOUVEAU_SVM"
+          "DRM_VC4_HDMI_CEC"
+          "FSL_MC_UAPI_SUPPORT"
+          "HSA_AMD"
+          "HSA_AMD_P2P"
+          "INFINIBAND_IPOIB"
+          "INFINIBAND_IPOIB_CM"
+          "LIRC"
+          "MEDIA_ATTACH"
+          "MEDIA_CEC_RC"
+          "MEGARAID_NEWGEN"
+          "MT798X_WMAC"
+          "MTD_COMPLEX_MAPPINGS"
+          "NET_VENDOR_MEDIATEK"
+          "ROCKCHIP_DW_HDMI_QP"
+          "ROCKCHIP_DW_MIPI_DSI2"
+          "SATA_MOBILE_LPM_POLICY"
+          "SCSI_LOWLEVEL_PCMCIA"
+          "SCSI_SAS_ATA"
+          "STAGING_MEDIA"
+          "SUN8I_DE2_CCU"
+          "USB_XHCI_TEGRA"
+        ] (_: lib.mkForce lib.kernel.unset);
       };
     };
 
