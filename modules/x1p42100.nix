@@ -20,6 +20,9 @@
           # Ubuntu ships it disabled.
           EC_DELL_XPS = no;
           HZ_1000 = yes;
+          # Ubuntu's IgH EtherCAT master uses x86-only cpu_khz; Ubuntu builds it
+          # on amd64 only.
+          IGH_ECAT = no;
           MFD_QCOM_RPM = yes;
           # Ubuntu's AppArmor SAUCE patches use skb->secmark without guarding
           # it on CONFIG_NETWORK_SECMARK, which Ubuntu always enables.
@@ -29,6 +32,9 @@
           PHY_QCOM_QMP_PCIE = yes;
           QCOM_CLK_RPM = yes;
           REGULATOR_QCOM_RPM = yes;
+          # Ubuntu SAUCE: would block unprivileged user namespaces (bwrap, Steam,
+          # Chromium sandbox) if AppArmor were ever enabled.
+          SECURITY_APPARMOR_RESTRICT_USERNS = no;
           SCHED_CLUSTER = yes;
           TYPEC = yes;
 
