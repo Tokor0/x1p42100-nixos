@@ -18,6 +18,9 @@
           DRM_PANEL_SAMSUNG_ATNA40CT01 = no;
           HZ_1000 = yes;
           MFD_QCOM_RPM = yes;
+          # Ubuntu's AppArmor SAUCE patches use skb->secmark without guarding
+          # it on CONFIG_NETWORK_SECMARK, which Ubuntu always enables.
+          NETWORK_SECMARK = yes;
           PCIE_QCOM = yes;
           PHY_QCOM_QMP = yes;
           PHY_QCOM_QMP_PCIE = yes;
