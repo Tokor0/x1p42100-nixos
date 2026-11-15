@@ -1,5 +1,18 @@
 {
   "nodes": {
+    "arm-sysreg-xml": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1594056856,
+        "narHash": "sha256-wpWMIdR4v4sGZ0FEn/j5+AzkpPFOF7lUKIFpVl5AMEE=",
+        "type": "tarball",
+        "url": "https://developer.arm.com/-/media/developer/products/architecture/armv8-a-architecture/2020-06/SysReg_xml_v86A-2020-06.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://developer.arm.com/-/media/developer/products/architecture/armv8-a-architecture/2020-06/SysReg_xml_v86A-2020-06.tar.gz"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -116,14 +129,55 @@
         "type": "github"
       }
     },
+    "qebspil-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1761409141,
+        "narHash": "sha256-kWUXzeYWNxGgmjt/p9yozrWc5ouUs0XXBRfiFMlu+QQ=",
+        "ref": "refs/tags/v1",
+        "rev": "8e4d9e676a3b3afe136cda9b953a2139ff1a32d0",
+        "revCount": 8,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/stephan-gh/qebspil"
+      },
+      "original": {
+        "ref": "refs/tags/v1",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/stephan-gh/qebspil"
+      }
+    },
     "root": {
       "inputs": {
+        "arm-sysreg-xml": "arm-sysreg-xml",
         "flake-parts": "flake-parts",
         "import-tree": "import-tree",
         "linux-src": "linux-src",
         "nixpkgs": "nixpkgs",
+        "qebspil-src": "qebspil-src",
+        "slbounce-src": "slbounce-src",
         "slim5x-firmware": "slim5x-firmware",
         "systemd-boot-installer": "systemd-boot-installer"
+      }
+    },
+    "slbounce-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1753025558,
+        "narHash": "sha256-X1lGJ+OYNcPORq3qqf1TLcuYa82sHAecXkUyiarnEp4=",
+        "ref": "refs/tags/v5",
+        "rev": "f68021d9b425717c48734a91607e52dfea46101e",
+        "revCount": 67,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/TravMurav/slbounce"
+      },
+      "original": {
+        "ref": "refs/tags/v5",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/TravMurav/slbounce"
       }
     },
     "slim5x-firmware": {

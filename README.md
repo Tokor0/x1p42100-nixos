@@ -144,6 +144,46 @@ If your device is a different X1P-42-100 machine (not the Slim 5x), import the
 lower-level `x1p` module instead and supply your own `hardware.deviceTree`
  (See [jglathe's repo](https://github.com/jglathe/linux_ms_dev_kit/tree/jg/ubuntu-qcom-x1e-6.19.14-jg-4/arch/arm64/boot/dts/qcom) for other readily available DTs) settings and firmware.
 
+## Booting in EL2
+
+By default the firmware runs Linux in EL1 under Qualcomm's hypervisor. Booting
+in EL2 instead is needed for KVM, and for the SoC to reach its deep sleep
+states. This is done with [slbounce](https://github.com/TravMurav/slbounce),
+which needs Microsoft's signed `tcblaunch.exe`. That file cannot be
+redistributed, so you supply your own copy from
+`C:\Windows\System32\tcblaunch.exe`:
+
+```nix
+x1p.el2 = {
+  enable = true;
+  tcblaunch = ./tcblaunch.exe;
+};
+```
+
+If your configuration is public, keep the binary out of the repository by
+adding it to the Nix store with `nix-store --add-fixed sha256 tcblaunch.exe`
+and referring to it by its hash:
+
+```nix
+x1p.el2.tcblaunch = pkgs.requireFile {
+  name = "tcblaunch.exe";
+  hash = "sha256-..."; # nix hash file tcblaunch.exe
+  message = "Run: nix-store --add-fixed sha256 tcblaunch.exe";
+};
+```
+
+This adds a separate `el2` specialisation to the systemd-boot menu; the default
+entry still boots in EL1. It installs slbounce and
+[qebspil](https://github.com/stephan-gh/qebspil) (which starts the audio and
+compute DSPs before the switch) as systemd-boot drivers, and copies
+`tcblaunch.exe`, `sltest.efi` and the DSP firmware to the ESP.
+
+Several revisions of `tcblaunch.exe` exist, and the newest ones are reported
+not to work with slbounce. To test yours without booting Linux, run
+`sltest.efi tcblaunch.exe` from an EFI shell on the ESP
+(`boot.loader.systemd-boot.edk2-uefi-shell.enable = true` adds one to the boot
+menu). A green line at the top of the screen means the switch to EL2 works.
+
 ## Related repos
 
 This project relies heavily on work by others.
