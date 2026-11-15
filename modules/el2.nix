@@ -116,7 +116,12 @@
           hardware.deviceTree.name = lib.mkForce (
             lib.removeSuffix ".dtb" config.hardware.deviceTree.name + "-el2.dtb"
           );
-          boot.kernelParams = [ "id_aa64mmfr0.ecv=1" ];
+          boot.kernelParams = [
+            "id_aa64mmfr0.ecv=1"
+            # "deep" (PSCI SYSTEM_SUSPEND) is reported not to work in EL2, and
+            # the SoC's low-power states are only reachable through s2idle.
+            "mem_sleep_default=s2idle"
+          ];
         };
 
         # systemd-boot loads everything in EFI/systemd/drivers for every entry.
