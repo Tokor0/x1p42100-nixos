@@ -96,18 +96,6 @@
           modprobe wifi_port_d3 dom=${toString cfg.wifiPciDomain}
         ''}
 
-        # These interconnect providers used to wait for crypto@1dfa000 (no
-        # driver in 7.3) before sync_state, so their boot-time maximum
-        # bandwidth votes were never released. jg-2 disables that node, so
-        # this should now be a no-op; kept as a fallback until verified.
-        for p in /sys/devices/platform/interconnect-1 /sys/devices/platform/soc@0/1700000.interconnect; do
-          for _ in $(seq 60); do
-            [ -e "$p/state_synced" ] && break
-            sleep 1
-          done
-          [ "$(cat "$p/state_synced" 2>/dev/null)" = 1 ] || echo 1 > "$p/state_synced"
-        done
-
         for d in ${lib.escapeShellArgs cfg.disableWakeup}; do
           [ -e "$d/power/wakeup" ] && echo disabled > "$d/power/wakeup"
         done
@@ -143,12 +131,12 @@
       };
 
       config = lib.mkIf (config.x1p.el2.enable && cfg.enable) {
+        # Not the USB-C controllers (usb_1_ss0/ss1, a600000/a800000): with
+        # wakeup disabled, their suspend resets the Slim 5x.
         x1p.el2.deepSleep.disableWakeup = [
           "/sys/bus/platform/devices/a000000.usb"
           "/sys/bus/platform/devices/a200000.usb"
           "/sys/bus/platform/devices/a400000.usb"
-          "/sys/bus/platform/devices/a600000.usb"
-          "/sys/bus/platform/devices/a800000.usb"
           # Lid switch. Opening the lid no longer wakes the machine.
           "/sys/devices/platform/gpio-keys"
         ];
