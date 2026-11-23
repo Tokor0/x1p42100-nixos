@@ -199,6 +199,13 @@
           "cma=128MB"
         ];
 
+        # Autoloads when the ADSP announces its power-limits channel and stops
+        # the ADSP's ~100 Hz timer in suspend, but it crashed the ADSP at every
+        # suspend on the Galaxy Book4 Edge (jglathe/linux_ms_dev_kit#102). In
+        # EL2 a crashed ADSP cannot be restarted, so keep it opt-in until
+        # tested here.
+        blacklistedKernelModules = [ "qcom_adsp_pwr_lmts" ];
+
         kernelPackages = withSystem pkgs.stdenv.hostPlatform.system (
           { config, ... }: pkgs.linuxPackagesFor config.packages.x1p-linux
         );

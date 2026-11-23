@@ -12,7 +12,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     linux-src = {
-      url = "github:jglathe/linux_ms_dev_kit/jg/ubuntu-qcom-x1e-7.3.3-jg-0";
+      url = "github:jglathe/linux_ms_dev_kit/jg/ubuntu-qcom-x1e-7.3.3-jg-2";
       flake = false;
     };
     slim5x-firmware = {
@@ -26,6 +26,11 @@
     };
     qebspil-src = {
       url = "git+https://github.com/stephan-gh/qebspil?ref=refs/tags/v1&submodules=1";
+      flake = false;
+    };
+    # EL2 deep sleep (modules/el2-sleep.nix): helper modules, qebspil patch.
+    x1e-sleep-src = {
+      url = "github:justririll/x1e-sleep/4e84b60eb073e76f8f7190a168c90c0d869b1326";
       flake = false;
     };
     # Input to slbounce's arm64-sysreg-lib header generator.

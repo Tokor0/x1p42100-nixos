@@ -84,16 +84,16 @@
     "linux-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1794133822,
-        "narHash": "sha256-i8LC2amncUONUjdUsQvl5iH1zfVeelLpc8ARFJVeIf0=",
+        "lastModified": 1795200241,
+        "narHash": "sha256-hMa49GSvCrtivOlYNYw9Txm1KskJGjF02n7xj+IRuhM=",
         "owner": "jglathe",
         "repo": "linux_ms_dev_kit",
-        "rev": "ee0390d06b8c7c8eeb9e7648fa81647c20b7098d",
+        "rev": "8d704ad1f8adf5d068480b929b73a2597f9e967b",
         "type": "github"
       },
       "original": {
         "owner": "jglathe",
-        "ref": "jg/ubuntu-qcom-x1e-7.3.3-jg-0",
+        "ref": "jg/ubuntu-qcom-x1e-7.3.3-jg-2",
         "repo": "linux_ms_dev_kit",
         "type": "github"
       }
@@ -158,7 +158,8 @@
         "qebspil-src": "qebspil-src",
         "slbounce-src": "slbounce-src",
         "slim5x-firmware": "slim5x-firmware",
-        "systemd-boot-installer": "systemd-boot-installer"
+        "systemd-boot-installer": "systemd-boot-installer",
+        "x1e-sleep-src": "x1e-sleep-src"
       }
     },
     "slbounce-src": {
@@ -215,6 +216,23 @@
       "original": {
         "owner": "Tokor0",
         "repo": "nixos-systemd-boot-installer",
+        "type": "github"
+      }
+    },
+    "x1e-sleep-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1791629818,
+        "narHash": "sha256-lCqI2chXKOtX3RlMzlihP/XhvZodbk8hT2GnbesnMGM=",
+        "owner": "justririll",
+        "repo": "x1e-sleep",
+        "rev": "4e84b60eb073e76f8f7190a168c90c0d869b1326",
+        "type": "github"
+      },
+      "original": {
+        "owner": "justririll",
+        "repo": "x1e-sleep",
+        "rev": "4e84b60eb073e76f8f7190a168c90c0d869b1326",
         "type": "github"
       }
     }

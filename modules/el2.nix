@@ -36,6 +36,12 @@
         pname = "qebspil";
         version = "1";
         src = inputs.qebspil-src;
+        # Tell AOSS that the DSP images run, as Linux does when it starts them
+        # itself. Without it the ADSP goes silent after the first DDR
+        # low-power entry in s2idle.
+        patches = [
+          "${inputs.x1e-sleep-src}/qebspil/0001-pil-send-AOSS-load_state-off-on-before-starting-ADSP.patch"
+        ];
         nativeBuildInputs = [ pkgs.dtc ];
         makeFlags = [
           "CROSS_COMPILE=${pkgs.stdenv.cc.targetPrefix}"
