@@ -172,7 +172,16 @@
           };
 
           # Only the booted DTB: the overlay needs a base built with symbols.
-          hardware.deviceTree.filter = baseNameOf config.hardware.deviceTree.name;
+          # Read the name from the specialisation's own config, where el2.nix
+          # has already switched it to the -el2 DTB.
+          imports = [
+            (
+              { config, ... }:
+              {
+                hardware.deviceTree.filter = baseNameOf config.hardware.deviceTree.name;
+              }
+            )
+          ];
           hardware.deviceTree.overlays = [
             {
               name = "x1-el2-sleep";
