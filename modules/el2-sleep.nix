@@ -59,16 +59,22 @@
         version = kernel.version;
         dontUnpack = true;
         nativeBuildInputs = kernel.moduleBuildDependencies;
-        buildPhase = ''
+        preBuild = ''
           cp ${inputs.x1e-sleep-src}/modules/el1tmr/el1tmr.c .
           cp ${inputs.x1e-sleep-src}/modules/aoss-cxsd-only/aoss_cxsd_only.c .
           cp ${wifiPortD3} wifi_port_d3.c
           echo 'obj-m := el1tmr.o aoss_cxsd_only.o wifi_port_d3.o' > Makefile
-          make -C ${kernel.dev}/lib/modules/${kernel.modDirVersion}/build M=$PWD modules
         '';
-        installPhase = ''
-          install -Dm444 -t $out/lib/modules/${kernel.modDirVersion}/extra *.ko
-        '';
+        # kbuild's modules_install signs each module and writes the
+        # <module>.ko.cer certificate that aggregateModules expects.
+        makeFlags = config.boot.kernelPackages.kernelModuleMakeFlags ++ [
+          "-C"
+          "${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
+          "M=$(PWD)"
+          "INSTALL_MOD_PATH=${placeholder "out"}"
+        ];
+        buildFlags = [ "modules" ];
+        installTargets = [ "modules_install" ];
       };
 
       setup = pkgs.writeShellScript "x1-el2-sleep-setup" ''
