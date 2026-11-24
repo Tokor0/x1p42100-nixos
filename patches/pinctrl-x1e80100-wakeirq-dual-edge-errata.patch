@@ -1,0 +1,29 @@
+From: Hugo Malinen <patch@tokoro.fi>
+Subject: [PATCH] pinctrl: qcom: x1e80100: emulate dual-edge wake IRQs
+
+When the PDC runs in pass-through mode (Linux owns EL2, where the
+qcom_scm_io_writel() to PDC_GPIO_INT_CTL_ENABLE succeeds), qcom-pdc turns
+IRQ_TYPE_EDGE_BOTH on a GPIO wake IRQ into IRQ_TYPE_EDGE_RISING. Without
+the dual-edge errata emulation in pinctrl-msm, only one edge is ever seen.
+
+On the Lenovo IdeaPad Slim 5x the lid switch (gpio-keys, GPIO 92, active
+low) then fires only on lid open: closing the lid is never reported and
+logind never suspends on lid close.
+
+Enable wakeirq_dual_edge_errata so pinctrl-msm re-arms the PDC for the
+opposite edge after each interrupt, as on sc7180 and others.
+
+---
+ drivers/pinctrl/qcom/pinctrl-x1e80100.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+--- a/drivers/pinctrl/qcom/pinctrl-x1e80100.c
++++ b/drivers/pinctrl/qcom/pinctrl-x1e80100.c
+@@ -1837,6 +1837,7 @@ static const struct msm_pinctrl_soc_data x1e80100_pinctrl = {
+ 	.ngpios = 239,
+ 	.wakeirq_map = x1e80100_pdc_map,
+ 	.nwakeirq_map = ARRAY_SIZE(x1e80100_pdc_map),
++	.wakeirq_dual_edge_errata = true,
+ 	.egpio_func = 9,
+ };
+ 

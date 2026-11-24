@@ -7,6 +7,15 @@
         version = "7.3.3";
         src = inputs.linux-src;
 
+        kernelPatches = [
+          {
+            # Lid switch never reports "closed" when Linux owns EL2: the PDC is
+            # in pass-through mode there and only the rising edge reaches it.
+            name = "pinctrl-x1e80100-wakeirq-dual-edge-errata";
+            patch = ../patches/pinctrl-x1e80100-wakeirq-dual-edge-errata.patch;
+          }
+        ];
+
         structuredExtraConfig = with lib.kernel; {
           CLK_X1E80100_CAMCC = yes;
           CLK_X1P42100_GPUCC = yes;
