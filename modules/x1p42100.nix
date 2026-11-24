@@ -160,8 +160,12 @@
     };
 
   flake.modules.nixos.x1p =
-    { pkgs, lib, ... }:
+    { config, pkgs, lib, ... }:
     {
+      # Keep the kernel's dev output alive across garbage collection. Out-of-tree
+      # modules (el2-sleep.nix) build against it, and once it is collected Nix
+      # can only get it back by recompiling the whole kernel.
+      system.extraDependencies = [ config.boot.kernelPackages.kernel.dev ];
 
       systemd.tpm2.enable = false;
       boot = {
