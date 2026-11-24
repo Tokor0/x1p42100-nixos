@@ -1,0 +1,37 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * IdeaPad Slim 5x: let panel-edp switch the panel's 3.3 V rail instead of
+ * keeping it always on. Same regulator as vreg_edp_3p3, minus
+ * regulator-always-on.
+ */
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "lenovo,ideapad-slim5x-oled", "lenovo,ideapad-slim5x-lcd";
+};
+
+&{/} {
+	vreg_edp_3p3_sw: regulator-edp-3p3-sw {
+		compatible = "regulator-fixed";
+		regulator-name = "VREG_EDP_3P3";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+
+		gpio = <&tlmm 70 0>; /* GPIO_ACTIVE_HIGH */
+		enable-active-high;
+
+		pinctrl-0 = <&edp_reg_en>;
+		pinctrl-names = "default";
+
+		regulator-boot-on;
+	};
+};
+
+&vreg_edp_3p3 {
+	status = "disabled";
+};
+
+&panel {
+	power-supply = <&vreg_edp_3p3_sw>;
+};

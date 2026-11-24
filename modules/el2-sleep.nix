@@ -173,7 +173,10 @@
           hardware.deviceTree.overlays = [
             {
               name = "x1-el2-sleep";
-              dtsText = ''
+              # Plain dtc: NixOS' dtsText path needs the kernel's dev output.
+              dtboFile = pkgs.runCommand "x1-el2-sleep.dtbo" {
+                nativeBuildInputs = [ pkgs.dtc ];
+              } "dtc -@ -I dts -O dtb -o $out ${pkgs.writeText "x1-el2-sleep.dts" ''
                 /dts-v1/;
                 /plugin/;
 
@@ -216,7 +219,7 @@
                 &system_pd {
                 	domain-idle-states = <&domain_ss1>, <&domain_ss3>;
                 };
-              '';
+              ''}";
             }
           ];
         };
