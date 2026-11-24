@@ -137,8 +137,9 @@
           "/sys/bus/platform/devices/a000000.usb"
           "/sys/bus/platform/devices/a200000.usb"
           "/sys/bus/platform/devices/a400000.usb"
-          # Lid switch. Opening the lid no longer wakes the machine.
-          "/sys/devices/platform/gpio-keys"
+          # The lid switch (gpio-keys) stays a wake source so opening the lid
+          # wakes the machine. Issue #102 reported it waking a collapsed SoC
+          # within seconds; add "/sys/devices/platform/gpio-keys" here if so.
         ];
 
         specialisation.el2.configuration = {
