@@ -214,9 +214,9 @@
 
         # Autoloads when the ADSP announces its power-limits channel and stops
         # the ADSP's ~100 Hz timer in suspend, but it crashed the ADSP at every
-        # suspend on the Galaxy Book4 Edge (jglathe/linux_ms_dev_kit#102). In
-        # EL2 a crashed ADSP cannot be restarted, so keep it opt-in until
-        # tested here.
+        # suspend on the Galaxy Book4 Edge (jglathe/linux_ms_dev_kit#102).
+        # Untested at EL1 here; the EL2 deep sleep service loads it by name
+        # (tested on this laptop), which the blacklist doesn't block.
         blacklistedKernelModules = [ "qcom_adsp_pwr_lmts" ];
 
         kernelPackages = withSystem pkgs.stdenv.hostPlatform.system (

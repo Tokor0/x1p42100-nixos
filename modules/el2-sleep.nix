@@ -96,6 +96,11 @@
           modprobe wifi_port_d3 dom=${toString cfg.wifiPciDomain}
         ''}
 
+        # Stops the ADSP's ~15 Hz timer in suspend (CX/DDR 91 -> 99.5 %,
+        # 0.279 -> 0.244 W over 11.8 h; the ADSP survived). Blacklisted in
+        # x1p42100.nix to keep it off at EL1; loading by name bypasses that.
+        modprobe qcom_adsp_pwr_lmts
+
         for d in ${lib.escapeShellArgs cfg.disableWakeup}; do
           [ -e "$d/power/wakeup" ] && echo disabled > "$d/power/wakeup"
         done
